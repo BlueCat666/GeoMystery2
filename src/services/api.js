@@ -1,8 +1,6 @@
 import axios from "axios";
 import { getIdToken } from "../firebase";
 
-console.log(getIdToken);
-
 const API_URL = "https://roblox-testing.onrender.com";
 // const API_URL = "http://localhost:3000";
 
@@ -16,7 +14,6 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(async (config) => {
   const idToken = await getIdToken();
   if (idToken) {
-    console.log(idToken);
     config.headers.Authorization = `Bearer ${idToken}`;
   }
   return config;
